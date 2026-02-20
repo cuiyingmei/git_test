@@ -14,10 +14,12 @@ df = pd.DataFrame({
 df[target] = (
     df[area]  20
     - df[age]  5
-    + df[foot_traffic]  0.02
+    + df[foot_traffic]  0.01 #0.02를 0.01로 수정
     + df[nearby_households]  0.01
-    + np.random.normal(0, 50, n)
+    + np.random.normal(0, 50, n) 
 )
+
+
 
 df.to_csv(datasample.csv, index=False)
 print(data created)
