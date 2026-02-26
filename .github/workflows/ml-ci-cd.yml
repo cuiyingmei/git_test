@@ -23,7 +23,7 @@ jobs:
 
       # -------- CI --------
       - name: train.py 실행
-        run: python train.py
+        run: python src/train.py
 
       - name: 파일 생성 확인
         run: test -f datasample.csv
