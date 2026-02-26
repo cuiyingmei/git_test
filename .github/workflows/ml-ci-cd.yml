@@ -1,0 +1,36 @@
+name: Simple ML CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-train:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 코드 체크아웃
+        uses: actions/checkout@v3
+
+      - name: Python 설정
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.10
+
+      - name: 패키지 설치
+        run: pip install -r requirements.txt
+
+      # -------- CI --------
+      - name: train.py 실행
+        run: python train.py
+
+      - name: 파일 생성 확인
+        run: test -f datasample.csv
+
+      # -------- CD --------
+      - name: 결과 파일 업로드
+        uses: actions/upload-artifact@v3
+        with:
+          name: generated-data
+          path: datasample.csv
